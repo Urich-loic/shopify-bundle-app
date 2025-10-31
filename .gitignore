@@ -1,0 +1,22 @@
+# Node
+node_modules
+frontend/node_modules
+frontend/dist
+
+# Laravel
+backend/vendor
+backend/public/build
+backend/storage/*.key
+
+# Environment
+.env
+.env.*
+backend/.env
+frontend/.env
+
+# Misc
+.idea
+.vscode
+.DS_Store
+npm-debug.log
+yarn-error.log
