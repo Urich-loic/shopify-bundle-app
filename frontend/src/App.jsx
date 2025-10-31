@@ -1,11 +1,12 @@
 
 import './App.css'
+import Home from './pages/Home'
 
 function App() {
 
   return (
     <>
-      Hello shopify react front
+      <Home/>
     </>
   )
 }
