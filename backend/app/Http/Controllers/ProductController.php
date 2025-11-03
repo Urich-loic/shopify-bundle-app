@@ -9,8 +9,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $shop = 'https://admin.shopify.com/';
+        $shop = 'test-store-1100000000000000000000000000000001934.myshopify.com';
         $products = (new ShopifyService($shop))->getProducts();
+        // dd(class_exists(\App\Services\ShopifyService::class));
         return response()->json($products);
     }
 }

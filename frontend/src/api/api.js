@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api";
+const API_URL = "https://9dc4962bcd12.ngrok-free.app/api";
 
 export async function getProducts() {
   const res = await fetch(`${API_URL}/products`);

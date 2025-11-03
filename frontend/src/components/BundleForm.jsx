@@ -1,31 +1,37 @@
-import React, { useState } from "react";
-import { Form, FormLayout, TextField, Button } from "@shopify/polaris";
-import { createBundle } from "../api/api";
+import {Card, Form, FormLayout, TextField, Button} from '@shopify/polaris';
+import {useState} from 'react';
+import axios from 'axios';
 
-function BundleForm() {
-  const [title, setTitle] = useState("");
+export default function BundleForm() {
+  const [title, setTitle] = useState('');
+  const [productIds, setProductIds] = useState('');
 
-  const handleSubmit = async () => {
-    await createBundle( title );
-    alert("Bundle créé !");
-    setTitle("");
+  const handleSubmit = () => {
+    axios.post('https://9dc4962bcd12.ngrok-free.app/api/bundles', {
+      title,
+      product_ids: productIds.split(',').map(id => id.trim())
+    }).then(res => {
+      alert('Bundle créé !');
+    });
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormLayout>
-        <TextField
-          label="Nom du bundle"
-          value={title}
-          onChange={setTitle}
-          autoComplete="off"
-        />
-        <Button submit primary>
-          Créer
-        </Button>
-      </FormLayout>
-    </Form>
+    <Card sectioned title="Créer un Bundle">
+      <Form onSubmit={handleSubmit}>
+        <FormLayout>
+          <TextField
+            label="Titre du bundle"
+            value={title}
+            onChange={setTitle}
+          />
+          <TextField
+            label="IDs produits (séparés par des virgules)"
+            value={productIds}
+            onChange={setProductIds}
+          />
+          <Button submit>Créer</Button>
+        </FormLayout>
+      </Form>
+    </Card>
   );
 }
-
-export default BundleForm;
